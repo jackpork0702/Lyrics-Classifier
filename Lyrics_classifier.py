@@ -275,3 +275,17 @@ def term_rank(Xv, tfidfv):
     plt.yticks(term['term'].sort_index())
     plt.show()
 
+def main():
+    #data preparing
+    df =prepare_data("C:/Users/jackpork0702/Desktop/lyrics_kaun/lyrics.csv")
+    df=select_year(df)
+    Xw,Y=df_to_array(df)
+    Xv = vectorizer(Xw)
+    X_train, X_test, Y_train, Y_test = train_test_split(Xv, Y)
+
+    #building modele
+    gen = ['rock', 'hip hop', 'metal', 'country']
+    print(rf_model(X_train, X_test, Y_train, Y_test, gen))
+
+if __name__ == '__main__':
+    main()
